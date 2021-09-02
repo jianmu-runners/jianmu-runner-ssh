@@ -4,7 +4,7 @@ owner: jianmu
 source: https://gitee.com/jianmu-runners/jianmu-runner-ssh
 docs: https://gitee.com/jianmu-runners/jianmu-runner-ssh
 ref: ssh_update
-version: v2.0
+version: v2.2
 type: DOCKER
 inputParameters:
   - ref: ssh_private_key
@@ -17,7 +17,7 @@ inputParameters:
     value: root
   - ref: ssh_port
     name: ssh port
-    type: NUMBER
+    type: STRING
     value: 22
   - ref: ssh_ip
     name: ssh ip
