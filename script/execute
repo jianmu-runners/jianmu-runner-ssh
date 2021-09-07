@@ -14,4 +14,4 @@ chmod 600 ~/.ssh/id_rsa
 
 set -x
 
-ssh ${JIANMU_SSH_HOST} "${JIANMU_SSH_CMD}"
+ssh -p${JIANMU_SSH_PORT} ${JIANMU_SSH_USER}@${JIANMU_SSH_IP} "${JIANMU_SSH_CMD}"

@@ -1,0 +1,32 @@
+ref: ssh_update
+version: 1.0.0
+inputParameters:
+  - ref: ssh_private_key
+    name: ssh私钥
+    type: SECRET
+    value: ((space.private_key))
+  - ref: ssh_ip
+    name: 远程主机IP
+    type: STRING
+    value: 127.0.0.1
+  - ref: ssh_port
+    name: ssh端口
+    type: STRING
+    value: 22
+  - ref: ssh_user
+    name: ssh连接用户
+    type: STRING
+    value: root
+  - ref: remote_file
+    name: 远程文件/目录路径
+    type: STRING
+    value: /a/b/c/d/e
+  - ref: local_file
+    name: 本地文件/目录路径
+    type: STRING
+    value: /a/b/c/e/d
+spec:
+  image: 'jianmudev/scp_resouce:1.0.0'
+  entrypoint: 
+    - /usr/local/bin/update
+

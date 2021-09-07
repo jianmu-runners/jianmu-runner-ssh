@@ -1,0 +1,3 @@
+FROM kroniak/ssh-client:3.11
+
+ADD script/execute /usr/local/bin/
