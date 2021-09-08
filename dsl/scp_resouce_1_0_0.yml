@@ -1,4 +1,4 @@
-ref: ssh_update
+ref: scp_resouce
 version: 1.0.0
 inputParameters:
   - ref: ssh_private_key
