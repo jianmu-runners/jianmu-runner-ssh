@@ -22,6 +22,6 @@ inputParameters:
     type: STRING
     value: date
 spec:
-  image: 'jianmudev/ssh_cmd:1.0.0'
+  image: 'jianmudev/jianmu-runner-ssh-cmd:1.0.0'
   entrypoint:
     - /usr/local/bin/execute

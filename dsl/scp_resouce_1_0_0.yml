@@ -26,7 +26,7 @@ inputParameters:
     type: STRING
     value: /a/b/c/e/d
 spec:
-  image: 'jianmudev/scp_resouce:1.0.0'
+  image: 'jianmudev/jianmu-runner-scp-resouce:1.0.0'
   entrypoint: 
     - /usr/local/bin/update
 
