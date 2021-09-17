@@ -13,7 +13,7 @@ JIANMU_SSH_CMD:          远程执行的命令
 #### 构建docker镜像
 ```
 # 创建docker镜像
-docker build --rm -t jianmudev/jianmu-runner-ssh-cmd:${version} .
+docker build --rm -f dockerfile/xxx -t jianmudev/jianmu-runner-ssh-cmd:${version} .
 
 # 上传docker镜像
 docker push jianmudev/jianmu-runner-ssh-cmd:${version}
