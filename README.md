@@ -7,7 +7,9 @@
 #### 输入参数
 ```
 JIANMU_SSH_PRIVATE_KEY:  远程主机私钥
-JIANMU_SSH_HOST:         登陆的用户及地址信息
+JIANMU_SSH_IP:           远程主机IP
+JIANMU_SSH_PORT:         SSH端口
+JIANMU_SSH_USER:         SSH连接用户
 JIANMU_SSH_CMD:          远程执行的命令
 ```
 #### 构建docker镜像
