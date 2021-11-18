@@ -1,14 +1,14 @@
 ref: scp_resouce
-version: 1.0.0
+version: 1.1.0
 inputParameters:
   - ref: ssh_private_key
     name: ssh私钥
     type: SECRET
-    value: ((space.private_key))
+    required: true
   - ref: ssh_ip
     name: 远程主机IP
     type: STRING
-    value: "127.0.0.1"
+    required: true
   - ref: ssh_port
     name: ssh端口
     type: STRING
@@ -16,17 +16,17 @@ inputParameters:
   - ref: ssh_user
     name: ssh连接用户
     type: STRING
-    value: "root"
+    value: root
   - ref: remote_file
     name: 远程文件/目录路径
     type: STRING
-    value: "/a/b/c/d/e"
+    required: true
   - ref: local_file
     name: 本地文件/目录路径
     type: STRING
-    value: "/a/b/c/e/d"
+    required: true
 spec:
-  image: 'jianmudev/jianmu-runner-scp-resouce:1.0.0'
+  image: 'jianmudev/jianmu-runner-scp-resouce:1.1.0'
   entrypoint: 
     - /usr/local/bin/update
 
