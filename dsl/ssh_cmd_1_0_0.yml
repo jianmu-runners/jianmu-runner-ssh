@@ -8,19 +8,19 @@ inputParameters:
   - ref: ssh_ip
     name: 远程主机IP
     type: STRING
-    value: 127.0.0.1
+    value: "127.0.0.1"
   - ref: ssh_port
     name: ssh端口
     type: STRING
-    value: 22
+    value: "22"
   - ref: ssh_user
     name: ssh连接用户
     type: STRING
-    value: root
+    value: "root"
   - ref: ssh_cmd
     name: 执行命令
     type: STRING
-    value: date
+    value: "date"
 spec:
   image: 'jianmudev/jianmu-runner-ssh-cmd:1.0.0'
   entrypoint:
