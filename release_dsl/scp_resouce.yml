@@ -1,0 +1,64 @@
+name: 发布scp替换文件节点
+
+global:
+  param:
+    # 格式：jianmurunner/${节点定义唯一标识}
+    image_name: jianmurunner/scp_resouce
+
+trigger:
+  type: webhook
+  param:
+    - name: gitee_token
+      type: SECRET
+      exp: $.header.X-Gitee-Token
+    - name: gitee_event
+      type: STRING
+      exp: $.header.X-Gitee-Event
+    - name: gitee_tag_created
+      type: BOOL
+      exp: $.body.json.created
+    - name: gitee_ref
+      type: STRING
+      exp: $.body.json.[?(@.ref=~/^refs\/tags\/scp_resouce>.*$/i)].ref
+  auth:
+    token: ${trigger.gitee_token}
+    value: ((gitee.webhook_runner_token))
+  only: (${trigger.gitee_event} === "Tag Push Hook" && ${trigger.gitee_tag_created} && ${trigger.gitee_ref} != "")
+
+pipeline:
+  git_clone:
+    type: git_clone:1.2.0
+    param:
+      remote_url: https://gitee.com/jianmu-runners/jianmu-runner-ssh.git
+      ref: ${trigger.gitee_ref}
+  string:
+    type: string:1.0.0-nodejs16.13.1
+    param:
+      expression: '"${git_clone.git_tag}".split(">")[1]'
+  image_build:
+    type: docker_image_build:1.0.1
+    param:
+      workspace: ${git_clone.git_path}
+      docker_username: ((dockerhub.runner_user))
+      docker_password: ((dockerhub.runner_pass))
+      docker_file: dockerfile/Dockerfile_scp_resouce
+      image_name: ${global.image_name}
+      image_tag: ${string.result}
+      docker_build_path: .
+  hub_publish:
+    type: hub_publish:1.1.0
+    param:
+      hub_url: https://hub.jianmu.dev
+      dsl_file_path: ${git_clone.git_path}/dsl/node_def_scp_resouce.yml
+      hub_api_ak: ((jianmuhub.ak))
+      hub_api_sk: ((jianmuhub.sk))
+      version: ${string.result}
+      image: ${global.image_name}:${string.result}
+  send_message:
+    type: qywx_notice:1.2.1
+    param:
+      bot_webhook_url: ((charbot.webhook_url))
+      mentioned_moblie_list: "[]"
+      text_content: "scp替换文件节点发布成功。\\n\\n版本：${string.result}"
+      msgtype: "text"
+      mentioned_list: "[]"
