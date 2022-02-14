@@ -1,5 +1,6 @@
 ref: scp_resouce
-version: 1.1.0
+version: 1.2.0
+description: 取消清空对端路径操作
 inputParameters:
   - ref: ssh_private_key
     name: ssh私钥
@@ -26,7 +27,7 @@ inputParameters:
     type: STRING
     required: true
 spec:
-  image: 'jianmudev/jianmu-runner-scp-resouce:1.1.0'
+  image: 'jianmudev/jianmu-runner-scp-resouce:1.2.0'
   entrypoint: 
     - /usr/local/bin/update
 

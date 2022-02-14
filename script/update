@@ -16,6 +16,6 @@ chmod 600 ~/.ssh/id_rsa
 
 fileDir=${JIANMU_REMOTE_FILE%/*}
 
-ssh -p${JIANMU_SSH_PORT} ${JIANMU_SSH_USER}@${JIANMU_SSH_IP} "rm -rf ${JIANMU_REMOTE_FILE};mkdir -p ${fileDir}"
+ssh -p${JIANMU_SSH_PORT} ${JIANMU_SSH_USER}@${JIANMU_SSH_IP} "mkdir -p ${fileDir}"
 
 scp -P${JIANMU_SSH_PORT} -r ${JIANMU_LOCAL_FILE} ${JIANMU_SSH_USER}@${JIANMU_SSH_IP}:${JIANMU_REMOTE_FILE}
